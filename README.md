@@ -1,10 +1,3 @@
-﻿# Energy Within Course Book - Text Only
+# 能量學課程網站書｜GitHub Pages 文字版
 
-This is the GitHub Pages text-only version.
-
-Upload these files to the root of your GitHub repository:
-
-- `index.html`
-- `.nojekyll`
-
-Then enable GitHub Pages from Settings -> Pages.
+上傳這個資料夾內的檔案到 GitHub repository 最外層，然後到 Settings -> Pages 設定 main / root。
