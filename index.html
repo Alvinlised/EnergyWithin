@@ -1,0 +1,631 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>能量從內而生｜網站式課程書</title>
+  <meta name="description" content="能量學、適應力、情緒管理、金錢能量與飲食能量學的網站式課程書。" />
+  <style>
+    :root {
+      --ink: #17211f; --muted: #5f6d67; --paper: #fbfaf5; --panel: #ffffff;
+      --gold: #d6a23b; --teal: #167477; --green: #4d8b5a; --rose: #c75e66;
+      --line: rgba(23,33,31,.14); --shadow: 0 18px 48px rgba(18, 31, 28, .12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif; color: var(--ink); background: var(--paper); }
+    .progress { position: fixed; inset: 0 auto auto 0; height: 4px; width: 0; background: linear-gradient(90deg, var(--gold), var(--teal)); z-index: 20; }
+    .layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); min-height: 100vh; }
+    aside { position: sticky; top: 0; height: 100vh; padding: 26px 20px; border-right: 1px solid var(--line); background: rgba(251,250,245,.92); backdrop-filter: blur(16px); overflow: auto; }
+    .brand { font-weight: 800; font-size: 22px; line-height: 1.2; margin-bottom: 8px; }
+    .meta { color: var(--muted); font-size: 13px; line-height: 1.7; margin-bottom: 18px; }
+    .search { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 12px 13px; font-size: 15px; background: white; margin: 10px 0 18px; }
+    nav a { display: block; color: var(--ink); text-decoration: none; padding: 8px 10px; border-radius: 8px; font-size: 14px; line-height: 1.35; }
+    nav a:hover { background: #ece8dc; }
+    nav .lesson-list { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    nav .lesson-list a { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: baseline; color: #34423e; }
+    nav .lesson-list span { color: var(--gold); font-weight: 800; }
+    main { min-width: 0; }
+    .hero { min-height: 86vh; display: grid; align-items: end; padding: 48px clamp(24px, 6vw, 82px); color: white; background: linear-gradient(135deg, #17211f, #167477); }
+    .hero-inner { max-width: 980px; }
+    .eyebrow { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #f5d58b; font-weight: 800; }
+    h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1.02; margin: 12px 0 16px; letter-spacing: 0; }
+    .hero p { font-size: clamp(18px, 2vw, 24px); line-height: 1.7; max-width: 860px; color: rgba(255,255,255,.9); }
+    .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .stat { border: 1px solid rgba(255,255,255,.32); border-radius: 8px; padding: 12px 16px; background: rgba(255,255,255,.12); }
+    .stat strong { display: block; font-size: 28px; }
+    .section { padding: 54px clamp(20px, 5vw, 72px); }
+    .section h2, article h2 { font-size: clamp(30px, 4vw, 48px); margin: 26px 0 22px; letter-spacing: 0; }
+    .section-lead { color: var(--muted); max-width: 860px; line-height: 1.8; font-size: 18px; }
+    .day-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-top: 24px; }
+    .day-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+    
+    .day-card div { padding: 16px; }
+    .day-card span { color: var(--gold); font-weight: 800; font-size: 13px; }
+    .day-card h3 { margin: 5px 0 8px; font-size: 22px; }
+    .day-card p { color: var(--muted); line-height: 1.55; margin: 0; }
+    .atlas { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; margin-top: 28px; }
+    .viz { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 22px; box-shadow: var(--shadow); min-height: 280px; }
+    .viz h3 { margin: 0 0 14px; font-size: 24px; }
+    .iceberg-viz { display: grid; grid-template-rows: 1fr 1.4fr; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+    .iceberg-viz div { padding: 18px; }
+    .above { background: linear-gradient(135deg,#f7d889,#fff3c7); }
+    .below { background: linear-gradient(135deg,#075c70,#0d9291); color: white; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .pill { padding: 8px 10px; border-radius: 999px; background: rgba(255,255,255,.58); border: 1px solid rgba(0,0,0,.08); font-size: 14px; }
+    .below .pill { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.2); }
+    .abc { display: grid; place-items: center; min-height: 250px; }
+    .circle { border-radius: 999px; display: grid; place-items: center; text-align: center; border: 2px solid; }
+    .c1 { width: 240px; height: 240px; border-color: #68a4d4; background: rgba(104,164,212,.18); }
+    .c2 { width: 170px; height: 170px; border-color: #c75e66; background: rgba(199,94,102,.18); }
+    .c3 { width: 92px; height: 92px; border-color: var(--gold); background: rgba(214,162,59,.28); font-weight: 800; }
+    .flow { display: grid; gap: 10px; }
+    .flow div { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: #fbfaf5; }
+    .flow b { color: white; background: var(--teal); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
+    .fortune { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; margin-top: 20px; }
+    .fortune span { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; padding: 8px; color: white; font-weight: 700; }
+    .fortune span:nth-child(1){background:#2f6f90} .fortune span:nth-child(2){background:#d6a23b} .fortune span:nth-child(3){background:#c75e66} .fortune span:nth-child(4){background:#4d8b5a} .fortune span:nth-child(5){background:#8266b0}
+    .reader { padding: 20px clamp(20px, 5vw, 72px) 80px; }
+    .content { max-width: 1120px; margin: 0 auto; }
+    .content h2 { margin-top: 78px; padding-top: 20px; border-top: 2px solid var(--line); }
+    .content h3 { margin: 42px 0 14px; font-size: clamp(24px, 3vw, 34px); letter-spacing: 0; }
+    .content p, .content li { font-size: 17px; line-height: 1.85; }
+    .content p { margin: 14px 0; }
+    .content ul, .content ol { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 18px 24px 18px 42px; box-shadow: 0 10px 24px rgba(18,31,28,.06); }
+    .course-figure { margin: 18px 0 22px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); background: #ddd; }
+    
+    blockquote { border-left: 5px solid var(--gold); background: #fff8e7; margin: 18px 0; padding: 8px 18px; border-radius: 0 8px 8px 0; }
+    .table-wrap { overflow-x: auto; margin: 18px 0; } table { width: 100%; border-collapse: collapse; background: white; } td { border: 1px solid var(--line); padding: 12px; }
+    mark { background: #ffe8a3; color: inherit; padding: 0 .15em; }
+    .backtop { position: fixed; right: 18px; bottom: 18px; border: 0; background: var(--ink); color: white; border-radius: 999px; padding: 12px 14px; cursor: pointer; box-shadow: var(--shadow); }
+    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } aside { position: relative; height: auto; } .day-grid, .atlas { grid-template-columns: 1fr; } .hero { min-height: 74vh; } }
+    @media print { aside, .progress, .backtop, .search { display:none; } .layout { display:block; } .hero { min-height: auto; color: var(--ink); background: none; } .hero p { color: var(--muted); } .kicker { color: var(--gold); } .course-figure { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <div class="layout">
+    <aside>
+      <div class="brand">能量從內而生</div>
+      <div class="meta">網站式課程書<br>2026-08-01 ~ 2026-08-04<br>33 堂課程視覺整理</div>
+      <input id="search" class="search" type="search" placeholder="搜尋課程、關鍵字..." aria-label="搜尋課程內容" />
+      <nav>
+        <a href="#top">封面</a>
+        <a href="#visual-atlas">總覽 Infographic</a>
+        <a href="#concepts">核心概念</a>
+        <a href="#day-1">Day 1（2026-08-01）</a><a href="#day-2">Day 2（2026-08-02）</a><a href="#day-3">Day 3（2026-08-03）</a><a href="#day-4">Day 4（2026-08-04）</a>
+        <div class="lesson-list"><a href="#lesson-1"><span>01</span>學習目標</a><a href="#lesson-2"><span>02</span>開場與注意事項</a><a href="#lesson-3"><span>03</span>學習要領</a><a href="#lesson-4"><span>04</span>磁場與能量基礎（講師：大明）</a><a href="#lesson-5"><span>05</span>能量學能幫助什麼？</a><a href="#lesson-6"><span>06</span>能量學概論</a><a href="#lesson-7"><span>07</span>全息理論</a><a href="#lesson-8"><span>08</span>適應力（講師：林楷模學長）</a><a href="#lesson-9"><span>09</span>練氣功法：陰陽拳（講師：大明）</a><a href="#lesson-10"><span>10</span>父母關係與適應力修煉（講師：阿嘎）</a><a href="#lesson-11"><span>11</span>投其所好（講師：昱婷）</a><a href="#lesson-12"><span>12</span>外圓內方（講師：昱婷）</a><a href="#lesson-13"><span>13</span>個案分享與必殺絕招（講師：大明）</a><a href="#lesson-14"><span>14</span>圓滿父母關係的三個層次</a><a href="#lesson-15"><span>15</span>陽能量（講師：馮昱婷）</a><a href="#lesson-16"><span>16</span>提升陽能量的黃金法則</a><a href="#lesson-17"><span>17</span>人生翻轉的方程式（講師：郭宗民）</a><a href="#lesson-18"><span>18</span>情緒管理（講師：大明哥）</a><a href="#lesson-19"><span>19</span>感恩（講師：許思涵）</a><a href="#lesson-20"><span>20</span>感恩冥想（講師：佩琪）</a><a href="#lesson-21"><span>21</span>愛的交流</a><a href="#lesson-22"><span>22</span>自評與反思（開場：大明哥）</a><a href="#lesson-23"><span>23</span>做人做事、人的種類、團隊文化</a><a href="#lesson-24"><span>24</span>上級關係修煉方法（講師：Randy）</a><a href="#lesson-25"><span>25</span>付出與收穫——五運</a><a href="#lesson-26"><span>26</span>金錢能量（講師：昱婷）</a><a href="#lesson-27"><span>27</span>活在當下（講師：昱婷，11:12）</a><a href="#lesson-28"><span>28</span>恐懼與覺知（ABC 三圈）</a><a href="#lesson-29"><span>29</span>靜心——誦缽療癒</a><a href="#lesson-30"><span>30</span>追求幸福 vs 發現幸福</a><a href="#lesson-31"><span>31</span>創造美好三步驟（送我們的「聚寶盆」）</a><a href="#lesson-32"><span>32</span>飲食能量學（講師：大明哥）</a><a href="#lesson-33"><span>33</span>一階課程禮物</a></div>
+      </nav>
+    </aside>
+    <main id="top">
+      <header class="hero">
+        <div class="hero-inner">
+          <div class="eyebrow">Energy Within Course Book</div>
+          <h1>能量學課程筆記</h1>
+          <p>把四天課程整理成可閱讀、可搜尋、可視覺理解的網站式書籍：此版本移除大型圖片，保留完整文字、章節導覽、搜尋與核心框架，方便上傳到 GitHub Pages。</p>
+          <div class="stats"><div class="stat"><strong>4</strong>天課程</div><div class="stat"><strong>33</strong>堂主題</div><div class="stat"><strong>38</strong>張視覺圖</div></div>
+        </div>
+      </header>
+      <section class="section">
+        <h2>四天學習路線</h2>
+        <p class="section-lead">這本書先用圖像建立整體方向，再進入每堂課的細節。你可以把它當成課程複習書、視覺筆記，也可以只用左側搜尋快速找到某個概念。</p>
+        <div class="day-grid">
+      <article class="day-card">
+        
+        <div><span>12 堂</span><h3>Day 1</h3><p>自我認定、能量學概論、適應力、父母關係</p></div>
+      </article>
+      <article class="day-card">
+        
+        <div><span>8 堂</span><h3>Day 2</h3><p>陽能量、抱怨化解、情緒管理、感恩</p></div>
+      </article>
+      <article class="day-card">
+        
+        <div><span>5 堂</span><h3>Day 3</h3><p>人際與上級關係、五運、金錢能量</p></div>
+      </article>
+      <article class="day-card">
+        
+        <div><span>7 堂</span><h3>Day 4</h3><p>活在當下、覺知靜心、圓夢、飲食能量</p></div>
+      </article></div>
+      </section>
+      <section id="visual-atlas" class="section">
+        <h2>總覽 Infographic</h2>
+        <p class="section-lead">這些圖把課程中反覆出現的框架先壓縮成幾個一眼能懂的模型，後面的每堂課都會回到這些核心。</p>
+        <div class="atlas">
+          <article class="viz"><h3>冰山模型</h3><div class="iceberg-viz"><div class="above"><strong>水面上：結果</strong><div class="pill-row"><span class="pill">事業</span><span class="pill">財運</span><span class="pill">情感</span><span class="pill">家庭</span><span class="pill">身體</span></div></div><div class="below"><strong>水面下：原因</strong><div class="pill-row"><span class="pill">想法</span><span class="pill">感受</span><span class="pill">信念</span><span class="pill">能量</span><span class="pill">覺知</span></div></div></div></article>
+          <article class="viz"><h3>ABC 三圈</h3><div class="abc"><div class="circle c1">A 行為語言<div class="circle c2">B 情緒想法<div class="circle c3">C<br>覺知</div></div></div></div></article>
+          <article class="viz"><h3>適應力修煉</h3><div class="flow"><div><b>1</b><span>提升意願：先找到為什麼要改變</span></div><div><b>2</b><span>拿掉設限：辨識冰山下的限制性信念</span></div><div><b>3</b><span>走出舒適圈：做該做的事，穩住五運</span></div></div></article>
+          <article class="viz"><h3>五運能量帳戶</h3><p>每一次付出、語言、選擇與信念，都像種子一樣進入能量帳戶，最後在五運中長成結果。</p><div class="fortune"><span>事業運</span><span>財運</span><span>情運</span><span>家運</span><span>體運</span></div></article>
+        </div>
+      </section>
+      <section class="reader"><article class="content" id="content"><h1 id="能量學課程筆記">能量學課程筆記</h1>
+<blockquote>
+<p>來源：課程逐字筆記（2026-08-01、2026-08-02、2026-08-03 三份文件整理而成）。</p>
+<p><strong>備註</strong>：Day 4（08/04）的筆記實際上是記錄在 08/03 檔案的下半部（以「4/8 昱婷 11:12 活在當下」為分界點），本文件已依據該分界拆分為 Day 3 與 Day 4 兩個獨立段落。</p>
+</blockquote>
+<hr class="soft-rule" />
+<h2 id="concepts">核心概念總覽</h2>
+
+<p>課程反覆使用以下幾個框架，先建立共同語言，後面各段落會重複引用：</p>
+<ul>
+<li><strong>冰山圖</strong>：水面上＝有形／外在／物質世界／結果（事業、財運、情感、家庭、身體，合稱「五運」）；水面下＝無形／內在／能量世界／原因（想法、感受、信念）。外在世界由內在世界而來。</li>
+<li><strong>陰陽能量</strong>：陰能量＝無形、知（悟性、直覺、學習、金錢、人際彈性）；陽能量＝有形、行（執行力、方向感、勇氣、事業）。陰陽合一才能心想事成。</li>
+<li><strong>五運</strong>：事業運、財運、情運、家運、體運——物質層面的量化指標。</li>
+<li><strong>種子定律 / 創造法則</strong>：行為（外圈／身）、想法感受信念（中圈／心）、覺知（內圈／靈）都會累積成「種子」。「我給出什麼就得到什麼」「我內在有什麼外在就得到什麼」（種子生現行，現行薰種子）。</li>
+<li><strong>ABC 三圈</strong>：A 外圈＝行為語言（小我）；B 中圈＝想法情緒感受（小我）；C 內圈＝覺知（真我，本體能量，永恆不老）。能量學的目標是打開 C 圈、讓靈性覺醒。</li>
+<li><strong>外圓內方</strong>：對外圓融待人（愛別人），對內堅守原則（愛自己）——課程定義的「中庸之道」。與之相對的兩種失衡型態：外方內方（衝突型，最終會反轉成外圓內圓來彌補）、外圓內圓（委屈犧牲型，最終會反轉成外方內方，陷入輪迴）。</li>
+<li><strong>適應力</strong>：影響五運的關鍵能力，分事、財、情、家、體五個面向；培養步驟為「提升意願 → 拿掉自我設限 → 走出舒適圈」。</li>
+</ul>
+<hr class="soft-rule" />
+<h2 id="day-1">Day 1（2026-08-01）</h2>
+
+<h3 id="lesson-1">學習目標</h3>
+
+<ul>
+<li>重新認定自己的身份</li>
+<li>學習與自己相處、找到自己的平靜</li>
+<li>學習自由運用超越自我的能量</li>
+<li>學會槓桿（不再只靠一己之力）、計畫力、執行力、信念與堅持</li>
+<li>察覺能量、匯聚能量</li>
+</ul>
+<h3 id="lesson-2">開場與注意事項</h3>
+
+<ul>
+<li>講師：第一堂「為自己而活」；成功者特質＝充滿熱誠、不怕挫折、常保笑容</li>
+<li>上課規範：守時、尊重隱私、關手機、掛名牌、不隨意走動／外送、座位轉向等</li>
+<li>團體中不稱呼「老師」</li>
+</ul>
+<h3 id="lesson-3">學習要領</h3>
+
+<ul>
+<li>相信自己一定會變更好；正面吸引正面</li>
+<li>心態轉換句：「我要改變了」→ 更進一步直接轉念為「我已經是一個提供價值的人」</li>
+<li>保持正面心態，同時練習察覺自己的負面之處</li>
+<li>全力投入、認真聆聽、用心分享、實際練習</li>
+<li>記錄自己要如何執行、寫下行動方案——<strong>學習就是要實踐</strong></li>
+</ul>
+<h3 id="lesson-4">磁場與能量基礎（講師：大明）</h3>
+
+<ul>
+<li>磁場「看不見摸不著，但存在」，運氣也是如此；想法、做法、心情、言語都是意識／潛意識，最終累積成運氣，一切都是累積來的（運氣、緣分）</li>
+<li>內在潛藏許多智慧，稱之為能量；學習時心情越好，效果越好</li>
+<li>陰能量＝無形／知；陽能量＝有形／行；陰陽合一才能心想事成</li>
+<li>心印會在行動中產生，才能真正入心</li>
+<li>人生如戲：自己決定怎麼演出、怎麼改寫劇本；很多人用慣性過生活，成為自己的導演、安排不同劇本，生命就會改變</li>
+<li>中庸之道＝雙贏；有人一直為別人而活（蠟燭燃盡型），有人只為自己而活——不同人演同一劇本會有不同結果</li>
+</ul>
+<p><strong>講師分享（大明的故事）</strong>：家中四姊妹排行、急於賺錢走錯路、28 歲創業經營舞廳／酒店／男公關店，環境複雜、黑白兩道都要處理，婚姻關係受影響，曾接觸毒品陷入低潮；後陸續接觸教育訓練、宗教信仰、玄學命理，最終遇到這套課程系統。核心體悟：<strong>所做的每件事要利己同時利人，運氣才會變好。</strong></p>
+<h3 id="lesson-5">能量學能幫助什麼？</h3>
+
+<ul>
+<li>物質層面：五運（事業運、財運、情運、家運、體運）——心結越少，身體越健康</li>
+<li>精神層面：沒有副作用的情緒處理方法</li>
+<li>靈性層面的提升</li>
+</ul>
+<h3 id="lesson-6">能量學概論</h3>
+
+<ul>
+<li><strong>命</strong>：先天、定數、天份、習性、慣性</li>
+<li><strong>運</strong>：後天、變數（內在＋外在＝命運）</li>
+<li>冰山圖：水面上（有形、物質世界、結果＝事財情家體五運）；水面下（無形、能量世界、原因）</li>
+<li><strong>宇宙法則</strong>：</li>
+<li>外在世界由內在世界而來（例：與老闆吵架、心不在工作上，事情會越做越糟；公司換老闆反而每況愈下）</li>
+<li>負債分「真負債」與「假負債」，真負債代表金錢能量很低</li>
+<li><strong>種子定律</strong>：外圈（身：行為、語言）、中圈（心：想法、感受、信念）、內圈（靈）；行為會累積能量——幫助越多人會有貴人運，傷害越多人會招致惡人運</li>
+<li><strong>創造法則</strong>：我給出什麼就得到什麼（種子生現行）；語言、想法、感受都會累積能量；我內在有什麼外在就得到什麼（現行薰種子）——「人在做，天在看」，這個「天」就是自己內在會記錄一切</li>
+<li>自己的認定會顯現在現實中；欺騙行為會引出更多欺騙</li>
+</ul>
+<h3 id="lesson-7">全息理論</h3>
+
+<ul>
+<li>大宇宙＝實際／身體狀態；小宇宙＝現象／抽血檢驗</li>
+<li>錢屬陰，媽媽屬陰</li>
+<li>世上兩種人：一種住在冰山上（卡在表象，痛苦人生，一直試圖改變世界來符合內心）；一種能同時看到冰山上與冰山下（活出智慧人生，改變內心世界來適應外在世界）</li>
+</ul>
+<h3 id="lesson-8">適應力（講師：林楷模學長）</h3>
+
+<p>背景案例：從小交易員成為金融最高主管。核心能力——<strong>適應力</strong>：越強，痛苦值越小（這個能力少有人被教導）。</p>
+<ul>
+<li>從出生到死亡都需要適應力；適應力弱的人容易排斥同學、老師或環境</li>
+<li>讓孩子在不同環境中獨自學習適應，過度保護反而是害了他們</li>
+<li>面對至親的死亡，也是修適應力的功課</li>
+<li><strong>適應力直接影響五運</strong>（課堂範例分數：事 7、財 7、情 6、家 7、體 6）</li>
+<li>對人的適應力（很兇/很奸巧的人是「他的」問題）</li>
+<li>對事、對物質（不好會難以累積財富）、對情（伴侶包容也是適應力）、對家人、對健康（無法適應健康生活習慣）的適應力</li>
+<li>順境時大家都好；逆境時適應力好則「境由心轉」，適應力差則會惡化逆境（「心由境轉」）</li>
+</ul>
+<p><strong>如何培養適應力：</strong></p>
+<ol>
+<li><strong>提升意願（WHY）</strong>——自己有沒有意願適應，直接決定結果（「自己不覺得自己大便臭，但別人的大便再怎麼不臭還是臭」）；真想做總會找到方法，不想做總會找到藉口</li>
+<li><strong>拿掉自我設限</strong>——冰山下：限制性信念（例：我最討厭這種人、賺錢是辛苦的、我不配擁有美好，這些都可以拿掉）；冰山上：框架住自己的想法或行為。限制性信念越多，舒適圈越小；要做「該做的事」而非只做「想做的事」</li>
+<li><strong>走出舒適圈</strong>——適應力開 1/10：不如意十之八九；開 1/2：喜憂參半；開 9/10：處處逢源；開 10/10：百戰不殆（極高胸懷、極高格局，人生最高境界）</li>
+</ol>
+<p><strong>修適應力的三種層次</strong>：主動修（人擇，人上人，提早修練）／被動修（天擇，上等人）</p>
+<p><strong>如何主動修練？</strong></p>
+<ul>
+<li>面對我害怕的事（向上突破）</li>
+<li>面對我討厭的事（向上突破——討厭溝通會讓自己的路越走越窄）</li>
+<li>面對我不習慣的事（找到意願，扭轉限制性信念）</li>
+</ul>
+<blockquote>
+<p>真正的勇氣不是沒有恐懼，而是即使恐懼，依然去做該做的事情。</p>
+<p>冰山圖上：對外在世界越能適應；冰山圖下：內在世界的乘載力越大 → 生命的穩定度越高。</p>
+<p>遇到困難時，可以拍拍自己胸脯說一句：「一切都好」。</p>
+</blockquote>
+<h3 id="lesson-9">練氣功法：陰陽拳（講師：大明）</h3>
+
+<ul>
+<li>人的一口氣，比食物、水還重要；對做人做事都有幫助，練腹式呼吸</li>
+<li>動作要慢、呼吸要細，一呼一吸勻速前進；氣要沉、要練得越來越長越深；要有「覺」——知道自己手在什麼位置、呼吸在什麼狀態，有覺才會有氣</li>
+<li>順序：先打陽拳，再打陰拳</li>
+<li>好處：氣足血液好、身體好、做事事半功倍、工作品質提升；打拳是讓心靜下來的最好機會——覺醒之後思緒開始平靜</li>
+<li><strong>氣清看事明，氣濁看事偏</strong></li>
+<li>每天都要練，練恆心與毅力，可平衡陰陽能量；最好在<strong>早上太陽升起時</strong>於戶外打拳（朝氣難得）</li>
+<li><strong>不打拳的時機</strong>：太陽下山後不在戶外打拳；飯後 30 分鐘內不打拳</li>
+<li>氣越長，越有能力超越自身極限；「氣數已盡」即指沒有能量了</li>
+<li>拳法節奏：陽拳 7 次呼吸出拳（左右各一）；陰拳 3 輪（左右為一輪）</li>
+</ul>
+<h3 id="lesson-10">父母關係與適應力修煉（講師：阿嘎）</h3>
+
+<ul>
+<li>淬鍊適應力要透過「人事物」，透過人來練習就是「關係」</li>
+<li><strong>天下第一關：父母關</strong>——因為父母對我們的恩大於害</li>
+<li>父母付出的愛是無悔的，即使他們有缺點；常見的錯誤是因為 5% 的不好，就把 100% 的好都否定了</li>
+<li>生命三貴人：父母、上級、師長；父母是我們能量之源</li>
+<li>父親：陽能量（執行力、方向感、勇氣、快樂、事業）</li>
+<li>母親：陰能量（金錢、學習、人際關係、彈性空間、陰柔、悟性／直覺力）</li>
+<li>如一顆樹期待好的果實（子女），樹根是父母，樹幹是夫妻</li>
+<li>替代功課：透過同性師長修練，約有 70% 的效果</li>
+</ul>
+<h3 id="lesson-11">投其所好（講師：昱婷）</h3>
+
+<ol>
+<li><strong>投其所好</strong>——興趣、嗜好、正向需求，與父母產生連結與共鳴；將愛的能量擴張出去，愛會用各種方式回到自己身上；主動將愛給予他人，會發現心想事成</li>
+<li><strong>觀察、詢問</strong>——如果沒有共同話題就主動創造，創造之後再觀察、再詢問</li>
+</ol>
+<h3 id="lesson-12">外圓內方（講師：昱婷）</h3>
+
+<p>如何面對父母又能活出自己？解法：<strong>外圓內方</strong>（外圓＝愛別人；內方＝愛自己），這是課程定義的「中庸之道／本我」。</p>
+<ul>
+<li><strong>外方內方</strong>：捍衛自己不惜傷害別人，衝突摩擦，只在意自己是否舒服，活得叛逆；走極致時會反轉成「外圓內圓」以彌補錯誤</li>
+<li><strong>外圓內圓</strong>：為了別人改變自己原則，走上委屈犧牲之路；走極致時會反轉成「外方內方」，陷入輪迴</li>
+</ul>
+<p><strong>如何做到外圓內方？</strong></p>
+<ul>
+<li>收到負面訊息時，允許父母與自己有不同觀點</li>
+<li>看見父母言行背後的善意（冰山下最真實的意義）</li>
+<li>給予正面回應，回應那份善意</li>
+<li>做應該做的判斷</li>
+</ul>
+<p><strong>成功的前提</strong>：① 內方要以正向為基礎（工作、嫁娶等大方向可自己決定）；② 平日對父母持續付出，累積外圓（累積本錢）。</p>
+<h3 id="lesson-13">個案分享與必殺絕招（講師：大明）</h3>
+
+<p>個案：媽媽常情緒勒索，從「外圓內圓」轉為「外方內方」。外在世界不好，可以改變內心；放下才能改變對媽媽的念頭。</p>
+<p><strong>必殺絕招——別想改變老人家</strong>：</p>
+<ul>
+<li>父母不歸我管（父母有天責要把孩子教好；師長教好學生；上級帶好下級；長輩要提得起，後輩要放得下）。父母犯錯，我們可以用分享、提點的方式回應</li>
+<li>父母注定有缺點（重點是如何與有缺點的人相處）</li>
+<li><strong>期待是關係中的傷害</strong>：期待越多，不滿意越多，對方也會承受更多痛苦與壓力；把期待拿掉，關係就會變好</li>
+<li>不接受父母的缺點就會生氣；接受了就會覺得有趣</li>
+<li>如何接受：父母犯錯不要太認真、放下控制慾（期待）、同理對方之苦</li>
+</ul>
+<blockquote>
+<p>我們對自己犯錯往往會合理化——尤其是自己做不到的時候，也是同樣的心理機制。</p>
+</blockquote>
+<hr class="soft-rule" />
+<h2 id="day-2">Day 2（2026-08-02）</h2>
+
+<h3 id="lesson-14">圓滿父母關係的三個層次</h3>
+
+<p>金字塔結構（由上到下）：</p>
+<ol>
+<li><strong>精華格</strong>（最高）：父母的故事書</li>
+<li><strong>昇華格</strong>（中間）：父母的優缺點</li>
+<li><strong>基本格</strong>（最下）：父母相處三要素——① 投其所好　② 外圓內方　③ 別想改變老人家</li>
+</ol>
+<p><strong>父母優缺點的密碼破解</strong>：</p>
+<ul>
+<li>父母的優點，我要學習與超越——因為那是我的天賦與潛能</li>
+<li>父母的缺點，我自己也有，我要修正——不修正會成為自己的致命傷</li>
+<li>父母的缺點，我要學會接受——不接受會讓自己掉入同樣的陷阱</li>
+</ul>
+<h3 id="lesson-15">陽能量（講師：馮昱婷）</h3>
+
+<p><strong>前言</strong>：現代人普遍與爸爸比較疏離，欠缺父親的陽氣；缺陽氣會沒有動力、沒有方向感。</p>
+<p><strong>陽能量的作用</strong>：</p>
+<ul>
+<li>主宰體運——沒有好的身體，其他方面再好也無福消受（懶人多病，缺乏陽氣）</li>
+<li>主宰光明與快樂、決定動力與執行力</li>
+<li>主宰學習能力與實踐——原地不動是最大的禁忌（不做不犯錯，但也學不到東西）</li>
+<li>主宰勇氣——缺乏執行力會想很多卻不做，反而更缺勇氣與自信</li>
+<li>主宰方向感——方向感是過去執行的累積、統合出的智慧</li>
+<li>學習陽能量也是學習如何做爸爸：開朗、能跟孩子做朋友</li>
+</ul>
+<p><strong>天底下男人的關係</strong>：一個女人內在的陽能量，展現在父親、老公、兒子身上；陽能量不好，可能因自己的喜好過濾掉男性貴人的機會。家庭主婦也可以走出來經營自己的陽能量，藉此改善周遭的男性關係。</p>
+<p><strong>循環定律</strong>：</p>
+<ul>
+<li>20 世紀前：乾道掌天盤（陽能量為主的時代）</li>
+<li>20 世紀後：坤道掌天盤（陰能量主宰，但相對較弱）</li>
+<li>知識過量的時代，知識本身已不再是關鍵，反而是有陽能量實力的人才會出色；女性開始抬頭，男人也可以成為「男人中的男人」</li>
+<li>危機就是轉機：AI 時代的壞消息是會讓大家的陽能量退化，掌握資訊才能因應</li>
+</ul>
+<h3 id="lesson-16">提升陽能量的黃金法則</h3>
+
+<ol>
+<li><strong>體運黃金法則：早睡早起</strong></li>
+<ul>
+<li>太陽升起後去執行，可吸收陽能量；太陽下山後陰能量強，是沉澱時刻</li>
+<li>最佳睡眠時段：<strong>亥時 9–11 點</strong>入睡最理想；<strong>子時 11–1 點</strong>修復身體、走膽經（補陰能量、提高悟性與金錢能量，最好進入深沉睡眠）；<strong>丑時 1–3 點</strong>走肝經</li>
+<li><strong>元氣</strong>：與身體修復力有關，可累積、有庫存，是危機時的保障與爆發力（西醫角度＝腎上腺素）；晚上精神特好其實是「虛火」旺</li>
+<li><strong>元氣負債</strong>會連動拖累其他四運；金錢與元氣有同樣的慣性（元氣負債會導致金錢負債），元氣不好也會影響情緒與人際關係</li>
+<li><strong>如何早睡早起</strong>：漸進式（一小時一小時調整，需要強大意志力）或斷進式（早上再累也要起來，用累積睡眠債的方式快速調時差；失眠時也用此法調時差；午睡不超過 50 分鐘；睡前 90 分鐘不要再做需要思考的事）</li>
+<li><strong>曬太陽</strong>——補充維生素 D 與鈣質，助眠並形成血清素；破曉時分最好；日出後 15 分鐘看太陽可修復眼睛；須在亥時前入睡才有足夠睡眠去接「破曉之氣」，沒睡飽不建議勉強早起</li>
+<li><strong>練氣</strong>——最佳時間是破曉打拳，持續三個月會有大幅提升，接到破曉之氣可帶來勢如破竹的突破（被形容為「世界最頂的補品」）；效果：狀態穩定、自律、毅力、勇氣、改善過敏、容易入睡、情緒穩定</li>
+<li><strong>運動</strong>——動靜皆可養生；建議 15 分鐘有氧運動；「丹氣跑步法」：吐氣時把丹田氣全吐出、腹部凹下，兩吸兩吐、腳跟先落地；訣竅是找到適合的地點與同伴，共同迎接破曉</li>
+<li><strong>一定要有工作</strong>——沒有工作，福分與能量會下滑；工作中的不舒服可以排除壞種子、鍛鍊意志與心性。建議：每天工作 8 小時，每週至少工作 5 天（共 40 小時）以維持陽盤；週日休息陪家人。工作與能量有關，不只是與錢有關</li>
+<li><strong>陽氣的禁忌</strong>——泡熱水澡不宜過久（毛細孔打開會漏掉陽氣元氣）；早起不灌冰水、不沖過久熱水（會澆熄陽氣、傷脾胃、漏陽氣）；避免久坐或滑手機過久（傷陽氣）</li>
+</ul>
+</ol>
+<h3 id="lesson-17">人生翻轉的方程式（講師：郭宗民）</h3>
+
+<ul>
+<li>命運的兩個來源：<strong>外在世界（1%–30%，可見的發生，容易讓人向下抱怨）</strong> vs <strong>內在世界（70%–99%，不可見的解釋／信念，能帶人向上感恩）</strong></li>
+<li>內在有一個頻率（感受），這個頻率會造成下一個發生</li>
+<li>冰山上不重要，冰山下的解釋才是主宰</li>
+</ul>
+<p><strong>抱怨的傷害</strong>：</p>
+<ul>
+<li>傷害自己：課程的目的是幫助學員把內在負能量卸掉；即使自認只是「陳述事實」，其實也常常是抱怨的陷阱；物以類聚——抱怨的人吸引抱怨，貴人會遠離，抱怨的人內在是匱乏的</li>
+<li>傷害別人：不斷把不好的東西給出去，不好的東西也會不斷回到自己身上；愛抱怨的人喜歡生氣，也讓別人感覺不好，甚至影響別人的決定、葬送別人的機會</li>
+<li>抱怨者很難進步：都覺得是別人的問題，就無法解決問題，問題反而越陷越深；要練習自我覺察、多請教他人</li>
+<li>「我是一切的創造者」——反省自己是否也在給對方負面能量（例：抱怨伴侶碎念，其實自己也有許多規則在給對方壓力）；層次還不夠高時，不要互相輔導；天堂或地獄般的人生，由自己決定</li>
+</ul>
+<p><strong>抱怨的化解之道</strong>：</p>
+<ol>
+<li>改變別人先改變自己（你對別人的抱怨，就是對自己的抱怨；你對別人的期待，也是對自己的期待）</li>
+<li>將抱怨轉為請教（對平級抱怨會造成分裂；對下級抱怨會失去威嚴；遇到無法處理的事，改用請教的口吻去找有能力的人）</li>
+<li>先處理心情，再處理事情（情緒起來時先停一停，撫平情緒）</li>
+<li>感情要如履薄冰、戰戰兢兢地對待；道歉不是認輸，而是重視關係</li>
+</ol>
+<h3 id="lesson-18">情緒管理（講師：大明哥）</h3>
+
+<p><strong>不會處理情緒的兩種方式：</strong></p>
+<ol>
+<li><strong>發洩情緒</strong>——苦苦建立的人際關係，9 個好也抵不過 1 個壞（「火燒功德林」），最終會吃虧（種子生現行，現行生種子）</li>
+<li><strong>壓抑情緒</strong>——負能量沒清乾淨會留在原地；情緒沒走完會形成「情緒負債」；常見的填補方式是享樂分心（吃、玩、樂、喝、嫖、賭）</li>
+</ol>
+<p><strong>情緒的兩種類型：</strong></p>
+<ul>
+<li><strong>自然情緒</strong>：有人罵你（發生）→ 產生感覺（怎麼來怎麼去）→ 回歸清淨的心（回歸本心）→ 理性</li>
+<li><strong>人為情緒</strong>：有人罵你（發生）→ 反彈「我不該被罵」（感覺）→ 開始編故事「一定是針對我」（加工）→ 產生新的感覺 → 情緒住進心裡 → 心情不好</li>
+<li>人生注定會遇到「痛」，痛不可避免；但「苦」是自己編故事找來的。負面故事一旦住進心裡，就會一直跟著你（「大便是臭的，但沒有人被它困住」，除非自己為它加工編故事）</li>
+</ul>
+<p><strong>流動情緒五步驟</strong>（情緒來時練習使用）：</p>
+<ol>
+<li>先覺察到情緒的存在</li>
+<li>暫停溝通、攻擊，不急著思考解決方案</li>
+<li>停止頭腦思維，不解釋、不評斷、不編故事</li>
+<li>回歸本心，純粹體驗情緒的感覺與原貌</li>
+<li>理智回來、心靜後再處理事情（轉念）</li>
+</ol>
+<p><strong>情緒反應矩陣</strong>（原始筆記為手繪表格，整理如下）：</p>
+<div class="table-wrap"><table><tbody>
+<tr><td>遇到的事</td><td>哭</td><td>不哭</td></tr>
+<tr><td>正面的事</td><td>哭（感動）</td><td>麻木不仁</td></tr>
+<tr><td>負面的事（未加工）</td><td>哭（流動，健康的釋放）</td><td>鎮定（轉念）</td></tr>
+<tr><td>負面的事（加工後）</td><td>懺悔（過度自責）</td><td>合理化（逃避）</td></tr>
+</tbody></table></div>
+<blockquote>
+<p>不要急著處理情緒，先讓它流動完再說。</p>
+</blockquote>
+<h3 id="lesson-19">感恩（講師：許思涵）</h3>
+
+<ul>
+<li>感恩的好處（原始筆記僅列標題，內容待補充／回憶補記）</li>
+</ul>
+<h3 id="lesson-20">感恩冥想（講師：佩琪）</h3>
+
+<ul>
+<li>帶領感恩冥想練習（原始筆記僅記錄時段，細節可憑記憶補充）</li>
+</ul>
+<h3 id="lesson-21">愛的交流</h3>
+
+<ul>
+<li>課程尾聲團體練習環節（原始筆記僅記錄時段）</li>
+</ul>
+<hr class="soft-rule" />
+<h2 id="day-3">Day 3（2026-08-03）</h2>
+
+<h3 id="lesson-22">自評與反思（開場：大明哥）</h3>
+
+<ul>
+<li>「前兩天自己作為自己人生的導演」打分數練習</li>
+<li><strong>我的回答</strong>：70 分。理由——已經專注在自己身上，把自己變得更好，可以放得開、不在乎別人的看法；不足之處是沒法有效地計畫與主導演出的步驟，欠缺時間來證實對自己目標的堅持。</li>
+</ul>
+<h3 id="lesson-23">做人做事、人的種類、團隊文化</h3>
+
+<ul>
+<li>做人做事哪個更重要？大家都知道做人重要，卻做不到</li>
+<li>冰山上＝「相」；冰山下＝「心」——莫忘初衷，一切都是為了讓心感受到快樂與富足</li>
+<li><strong>會做人是不會被取代的；會做事會被系統／AI 取代</strong></li>
+</ul>
+<p><strong>人的種類（同心圓模型）</strong>：</p>
+<ul>
+<li>外圓：客戶（公司最重要的是客戶；學校最重要的是學生；醫院最重要的是病人）</li>
+<li>中圓：同事（上級、中級、下級）</li>
+<li>內圓：家庭（每個員工的家庭）</li>
+<li>股東：找與媽媽關係好的人</li>
+</ul>
+<p>工作團隊的狀態，全都與每個成員的家庭有關係。團隊的一致性來自組織章程；團隊越強，關鍵就在上級關係；公司文化是成功的關鍵，文化由領導者的內心開始；<strong>賞罰文化才能維護公司的一致性</strong>。「富不過三代」是因為會傳給小孩；家族企業需公私分明，否則不宜與家族成員共事；夫妻共事仍要維持公司的一致性。</p>
+<p><strong>上級／下級關係</strong>：上級＝天時人和；下級＝地利。上級三種類型：福分比你好、能力比你好、以上皆是。沒有上級的人（如老闆本人）也需要找一個上級來累積上級運。<strong>老二哲學</strong>：老大當久了聽不進別人的話，老么總是聽指令沒主見，老二則對上又對下——上級要慎選，不愚忠。</p>
+<h3 id="lesson-24">上級關係修煉方法（講師：Randy）</h3>
+
+<ul>
+<li><strong>滿招損，謙受益</strong>：傲慢自滿帶來虧損，謙卑帶來益處</li>
+<li>被動空間能量比較能克服逆境</li>
+<li><strong>揚長補短</strong>（許思涵補充）：不邀功——愛邀功的人內心是空虛的，只想被看見、只想要成果；不功高震主——等於瞧不起老闆，表現已威脅到上級</li>
+<li>上級也有缺點，不接受就學不會過關的方法；如果上級毫無缺點，自己反而失去創造價值的機會——接受每個人的不完美，上級的不足之處，正是「我」被需要的地方</li>
+<li>在上級還沒想到之前，默默先去補位；未來也會有默默幫助你的下屬</li>
+</ul>
+<h3 id="lesson-25">付出與收穫——五運</h3>
+
+<ul>
+<li>讓人感動的不是成功，而是底層內心的共鳴；有回應，就是種下支持的種子</li>
+<li>多付出的部分會累積成五運的能量；<strong>方向比努力更重要</strong>——要選擇自己的天賦（做起來最輕鬆、最有效果、最有熱誠的事）</li>
+<li>有沒有給予同事深深的信任感與安全感？能量會複利增長</li>
+<li>產品要給客戶確實的物超所值；短線交易會造成懶散的態度；做人要踏實</li>
+<li>核心提問：<strong>能量帳戶裡面有沒有累積？</strong></li>
+</ul>
+<p><strong>和合之道</strong>：合而不同（外圓內方）——適度保持友好態度，但不隨他人一起抱怨。</p>
+<h3 id="lesson-26">金錢能量（講師：昱婷）</h3>
+
+<p><strong>金錢黃金法則：我與物質的關係。</strong></p>
+<ul>
+<li>物質最小單位是「弦」——是一種頻率；要調整與物質的頻率，因為錢是最大的物質</li>
+<li>能量小的會繞著能量大的轉（地球繞太陽、月球繞地球）：人的能量小於物質，就會追逐金錢，成為「錢奴」；人的能量大於物質，錢會追著人跑</li>
+<li>被物質控制的表現：潔癖、煙癮、賣身體等</li>
+<li><strong>降低物慾</strong>：物慾強代表內在匱乏；物慾低代表內在富足。（課堂提法：「男人要降低色慾，女人要降低物慾」）</li>
+<li>金錢能量會被色慾抵消（好色會讓金錢能量像被打了一個洞）；物慾重的人容易「這個之後想要下一個更美更快樂的東西」，也容易與色慾重的人在一起（負面範例：豪奢揮霍型人物）</li>
+</ul>
+<p><strong>居家整理三要素</strong>：</p>
+<ul>
+<li>有錢人東西少、很整潔——外在世界是內在世界的投影；辦公空間乾淨整潔＝提高金錢能量，雜亂無章則反之</li>
+<li>家裡不留太多用不到的東西，否則能量會滯留，心也會停滯，身體也會有狀況</li>
+<li>買東西看「價值」而非「價格」——一件東西穿很久，勝過便宜但用一下就壞的東西</li>
+<li>捨棄多餘的廢棄物：真正沒有用的東西留著才可惜；對用過的物品表達感恩，對完全沒用過的東西表達懺悔；只整理自己的東西，只買有用的東西</li>
+<li>脫離對物品的執著與依賴，否則會退化；囤積會浪費空間、讓能量停滯；有些囤積是回憶，會把自己鎖在過去——需要擁抱現實，學會「捨」才能重新自我面對，內在會輕盈很多</li>
+</ul>
+<hr class="soft-rule" />
+<h2 id="day-4">Day 4（2026-08-04）</h2>
+
+<blockquote>
+<p>原始筆記僅記錄至上午 11:12 之後的內容（見「活在當下」段落開頭的時間戳記），推測當天稍早應還有開場／暖身環節，惟原始文件未記錄，故本節從「活在當下」開始。</p>
+</blockquote>
+<h3 id="lesson-27">活在當下（講師：昱婷，11:12）</h3>
+
+<p><strong>活在未來的人</strong>：</p>
+<ul>
+<li>期待越高，不滿意越高；把幸福快樂寄託在未來，是個盲點；達到目標時常有「結果不過也就這樣」的落差感</li>
+<li>例子：星期一上班還有五天假、星期三還有兩天假、星期五終於要放假、星期六又要面對隔天上班——一整週只有一天是真正開心的</li>
+<li><strong>邊際效應遞減</strong>：感受不會因獲得更多而更好，這是物質世界的通則；美好是短暫快樂；「求不得苦 → 得到（快樂興奮）→ 害怕失去 → 再追求」的循環</li>
+</ul>
+<p><strong>活在當下與周圍合一</strong>：喜悅是永恆的。莫忘初衷，改變思想。宮本武藏：練劍的目的不是為了目的，而是為了過程，與劍合一——慾望越大，越難達成目標。活在當下也需要設定目標（沒有目標會活得太安逸），設定目標是為了服務當下。</p>
+<p><strong>心想事成的秘訣——圓夢計畫</strong></p>
+<p>目標無法達成的三個原因：① 沒有下定決心；② 沒有把大目標拆成小目標；③ 沒有設定無形的小目標（冰山上的「10 萬」是「局」；冰山下的「10 萬」是「格」）。</p>
+<p><strong>活在未來的恐懼、壓力、擔心、焦慮</strong>：內在有什麼信念，就會有相應的感受，外在也會相應發生。恐懼是內心自己創造出來的（想太多）。孩子對父母最好的事，就是勇敢地做自己。</p>
+<ul>
+<li>陽脈：我們要主動做什麼？活出愛、給出愛——許多痛苦源自「得不到愛」</li>
+<li>陰脈：什麼都不做，但要淨心</li>
+<li>痛苦常常是自己在編故事，把原本不複雜的事情加工——要練習覺察但不跟隨，練習久了就會有定力</li>
+</ul>
+<h3 id="lesson-28">恐懼與覺知（ABC 三圈）</h3>
+
+<ul>
+<li>A 外圈：行為語言（屬小我）</li>
+<li>B 中圈：想法情緒感受（屬小我）</li>
+<li>C 內圈：覺知（屬真我，本體的能量）——<strong>覺知是永恆的，不會老（定）</strong>；覺知越弱，看事越不清楚（「白目」）</li>
+<li>能量學的目標：讓靈性覺醒，打開 C 圈；覺知需要練習</li>
+<li>心就像一杯有泥沙的水：沒靜下來時混濁不清，一旦靜下來就清楚了；靜心之後，更高層的自己會來指點自己</li>
+</ul>
+<p><strong>兩種人</strong>：有內容沒覺知（渾渾噩噩、恍神，嚴重會失控）；有內容有覺知（能把人生經營好，控制得了自己）。三種覺察力：身覺（對身體的控制力）、語覺（對說話的控制力）、心覺（看得見自己的心與念頭的控制力）。</p>
+<h3 id="lesson-29">靜心——誦缽療癒</h3>
+
+<p>三個音節對應的觀想：</p>
+<ul>
+<li><strong>嗯</strong>——眉間往後的腦中心產生一道光</li>
+<li><strong>啊</strong>——光往下至約胸口（乳頭之間）中心，刺激迷走神經</li>
+<li><strong>吽（轟）</strong>——光往下至會陰穴（海底輪，肛門與生殖器之間），這道光從外圈繞至頭頂（發聲時把光射出、往頭頂去）</li>
+</ul>
+<h3 id="lesson-30">追求幸福 vs 發現幸福</h3>
+
+<ul>
+<li>追求幸福的人很多，但大多得不到幸福，因為大部分人都在追逐未來，「當下」是空的</li>
+<li>建議把「追求幸福」改成「<strong>發現</strong>幸福」</li>
+</ul>
+<p><strong>兩者差異</strong>：</p>
+<ul>
+<li><strong>追求幸福（慾望）</strong>：把幸福定義了就無法幸福（例：只有豪宅才幸福，沒有就不幸福）——這是把幸福寄託在冰山上的慾望；得不到時痛苦，追求美好會產生多巴胺，一旦刺激過頭會產生匱乏感（求不得苦）；得到後多巴胺分泌，下次需要更大刺激才有同樣快感，是一種上癮症；物質追求是條不歸路（極端例子如過度追求感官刺激後的變態行為，即「多巴胺效應的不歸路」）——<strong>萬般帶不走，只有業隨身</strong>；內在是依賴者，是錢奴</li>
+<li><strong>發現幸福（開一間「幸福無限公司」）</strong>：內在是創造者，所到之處都是希望，內在豐盛且滿足</li>
+</ul>
+<p><strong>古今對比小結</strong>（用來說明「幸福不是擁有你想要的，而是想著你擁有的」）：現代人在食、衣、住、行各方面的日常條件，多半已優於古代帝王（吃各國料理成本低廉、衣料多樣化、居住條件、交通工具皆遠勝古代）。</p>
+<ul>
+<li><strong>發現幸福 App 練習</strong>：每 15 分鐘提醒一次，放下手邊事情，去感受現在擁有什麼、感受當下的幸福</li>
+</ul>
+<h3 id="lesson-31">創造美好三步驟（送我們的「聚寶盆」）</h3>
+
+<ul>
+<li>運用複利方式，發現美好，美好就會不斷發生</li>
+<li>創造財富的方式：對任何發生在眼前的物質，都感到豐盛滿足（美好被創造，種下好種子）</li>
+<li>「親證」有兩種：向上親證、向下親證</li>
+<li>自我領悟範例：「我否定了我父親，所以他身上的優點我幾乎沒有學到（他有強大自信、男子氣概）」——凡是有否定的對象，都有可能阻礙自己成為更好的人；不要聚焦、關注過於負面的內容，會影響內心（種子生現行，現行薰種子）</li>
+</ul>
+<h3 id="lesson-32">飲食能量學（講師：大明哥）</h3>
+
+<ul>
+<li>冰山上＝營養學；冰山下＝能量學</li>
+<li>素食性動物腸道長度約為身高的 5–6 倍，人類也是；草食性動物牙齒偏平，人類也是——生理結構偏向草食</li>
+<li>吃素身體偏弱鹼性，血液較好流動；吃葷則身體偏酸性</li>
+<li>提到市售家禽因產能壓力快速育成、生長環境不自然、被宰殺前的恐懼也會產生毒素</li>
+<li><strong>WHO 公布最健康的飲食：地中海飲食</strong>（大量吃素，哈佛餐盤原則）——建議先喝 300CC 溫水，餐盤分四等分</li>
+<li>依台灣濕熱型海島氣候，不建議多吃麵食（偏濕氣重，適合北方寒冷氣候）；麵包因添加物多、加上麵食濕氣，問題更多；帶「瓜」字的水果偏寒涼，體質需留意</li>
+<li>南方人以米食為主；夏季水果（龍眼、芒果、荔枝）多屬熱性；原則上越冷的地方適合吃冷的食物，冬天反而較適合吃冰</li>
+<li>在來米可去濕氣；米不宜吃過量，過量與血管鈣化、動脈硬化、中風機率提高有關，尤其肥胖、肉食過量、甜食過量、澱粉過量者風險更高</li>
+<li>課堂引用觀點：長期吃葷會使經脈穴道阻塞（源自禪師能內觀經絡的說法）；從靈性角度看，人與動物都是動態能量，吃肉的人腦袋容易停不下來、易疲倦，人（動）與植物（靜）搭配較能達到平衡；另有環保角度：飼養畜牲需消耗約 9 倍的素食用量，且地球排碳量已過高，吃素有助降低排碳量</li>
+</ul>
+<p><strong>能量學飲食分級</strong>：</p>
+<ul>
+<li><strong>高階能量</strong>：原形食物（未加工）——熬夜會耗損元氣，吃原形食物有助補元氣；綠色蔬菜（尤其菠菜、萵苣）評價最高，地中海飲食有一半是蔬菜；蔬菜料理方式建議快燙、快炒優於生菜沙拉（台灣人腸胃不一定適合生食）；吃素可從「方便素」「肉邊素」入門</li>
+<li><strong>中階能量</strong>：高＝蛤蜊、蛋；中＝小蝦小魚；低＝帶殼類（龍蝦、螃蟹等，膽固醇偏高，對頭腦清晰度不利）</li>
+<li><strong>低階能量</strong>：紅肉等肉類（對能量有較大傷損）、加工素食製品（添加物多）、基因改造食物、甜食、煙燻、油炸、燒烤；微波爐加熱會把能量轉換成熱量，被認為會摧毀食物能量；零食餅乾添加物多，屬低階能量</li>
+</ul>
+<blockquote>
+<p>課後挑戰：嘗試吃素。</p>
+</blockquote>
+<h3 id="lesson-33">一階課程禮物</h3>
+
+<blockquote>
+<p><strong>外求一物是一物，內求一心是全部。</strong></p>
+</blockquote>
+<hr class="soft-rule" />
+<h2 id="待持續練習清單">待持續練習清單</h2>
+<ul>
+<li>[ ] 每日破曉練氣（陰陽拳），目標持續 3 個月觀察變化</li>
+<li>[ ] 調整作息，力求亥時（9–11pm）前入睡</li>
+<li>[ ] 情緒來時練習「流動情緒五步驟」，不急著處理、不編故事</li>
+<li>[ ] 把「抱怨」轉為「請教」——尤其對平級與下級</li>
+<li>[ ] 居家與辦公空間定期整理，只留「有用」的物品</li>
+<li>[ ] 每 15 分鐘用「發現幸福 App」提醒自己，練習感受當下已擁有的美好</li>
+<li>[ ] 課後挑戰：嘗試吃素一段時間，觀察體能與情緒變化</li>
+</ul></article></section>
+    </main>
+  </div>
+  <button class="backtop" type="button" onclick="backToTop()" aria-label="回到頂部">↑</button>
+  <script>
+    const progress = document.getElementById('progress');
+    function backToTop() {
+      const root = document.documentElement;
+      const previous = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      root.scrollTop = 0;
+      setTimeout(() => { root.style.scrollBehavior = previous; }, 80);
+    }
+    addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+      progress.style.width = pct + '%';
+    });
+    const search = document.getElementById('search');
+    const content = document.getElementById('content');
+    const original = content.innerHTML;
+    search.addEventListener('input', () => {
+      const q = search.value.trim();
+      content.innerHTML = original;
+      if (!q) return;
+      const safe = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      content.innerHTML = content.innerHTML.replace(new RegExp(safe, 'gi'), m => `<mark>${m}</mark>`);
+    });
+  </script>
+</body>
+</html>
+
